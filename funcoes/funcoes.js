@@ -124,7 +124,7 @@ const forca = () => {
             } else {
 
                 tentativas--
-                console.log('\nA plavra não possui essa letra!');
+                console.log(`\nA fruta não possui a letra ${letra}`);
 
                 if (tentativas >= 1) {
 
