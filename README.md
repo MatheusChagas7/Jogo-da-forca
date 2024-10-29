@@ -26,5 +26,5 @@ PASSOS:
     ```
 4. Execute o projeto utilizando no terminal o comando:
     ```
-    node index.js
+    node main.js
     ```
