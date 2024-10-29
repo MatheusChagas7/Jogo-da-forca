@@ -88,8 +88,12 @@ const forca = () => {
 
         letra = input.question("\nDigite uma letra: ").toString();
 
-        letra = letra.toLocaleLowerCase();
+        // transoforma a letra digitada em minúsculo, para ser compativél
+        // com todas as letras da palavra armazenada durante a verificação
+        letra = letra.toLowerCase();
 
+        // A regex /[a-zA-z]/ foi utilizada para garantir que os digitos
+        // sejam apenas letras de A a Z, maiúsculo ou minúsculo
         if (letra.length === 1 && letra.match(/[a-zA-z]/)) {
 
             let posicaoLetra = palavraSorteada.indexOf(letra);
@@ -98,16 +102,22 @@ const forca = () => {
 
                 console.log('\nLetra encontrada!\n');
 
+                // Percorre o array da palavra sorteada buscando a posição em que a letra foi encontrada
+                // e atualiza o array de palavraOculta adicionado a letra no mesmo índice 
+                // que a foi encontrada a letra no array palavraSortArray.
                 for (let contador = 0; contador < tamanhoFruta; contador++) {
 
                     if (palavraSortArray[contador] == letra) {
 
+                        // para cada letra encontrada os acertos são incrementos em 1
                         if(palavraOculta[contador] != letra ){
 
                             acertos++;
 
                         }
 
+                        // Se o índice da letra encontrada foi 0 ou seja a primeira letra da palavra
+                        // ela será transformada em maiúsculo.
                         if (posicaoLetra == 0) {
 
                             letra = letra.toLocaleUpperCase();
@@ -119,13 +129,18 @@ const forca = () => {
                     }
                 }
 
+                // A função nativa .join foi utilizado para juntar as letras
+                // do array novamente em uma string só
                 console.log(palavraOculta.join(''));
 
             } else {
 
+                // Caso a palavra não possua a letra as tentativas são decrementadas em 1
                 tentativas--
                 console.log(`\nA fruta não possui a letra ${letra}`);
 
+                // Caso ainda possua tentativas, uma mensagem é exibida mostrando o número de tentativas restante
+                // e também as letras encontradas da palavra até então.
                 if (tentativas >= 1) {
 
                     console.log(`\nVocê ainda possui ${tentativas} tentativas!\n`);
@@ -142,6 +157,7 @@ const forca = () => {
                 }
             }
 
+            // Caso tenha acertado todas as letras uma mensagem de vitória será exibida e a palavra revelada.
             if (acertos == tamanhoFruta) {
                 console.log("\n------------------------VITÓRIA!!-------------------")
                 console.log(`\nVocê acertou, a fruta era: ${palavraSorteada}\n`)
